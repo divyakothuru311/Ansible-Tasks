@@ -1,0 +1,32 @@
+## Playbook for metricbeat
+---
+- name: install metricbeat
+  hosts: all
+  become: yes
+  tasks:
+      - name: Add an apt key
+        ansible.builtin.apt_key:
+          url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+          state: present
+      - name: Install apt transport
+        ansible.builtin.package:
+          name: apt-transport-https
+          state: present
+      - name: Add specified repository
+        ansible.builtin.shell:
+          cmd: echo "deb https://artifacts.elastic.co/packages/8.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-8.x.list
+      - name: install metricbeat
+        ansible.builtin.apt:
+          name: metricbeat
+          update_cache: true
+          state: present
+      - name: metricbeat
+        ansible.builtin.systemd:
+          name: metricbeat
+          enabled: true
+      - name: status metricbeat
+        ansible.builtin.systemd:
+          name: metricbeat
+          state: started
+
+
