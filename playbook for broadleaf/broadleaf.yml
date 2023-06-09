@@ -1,0 +1,24 @@
+## playbook for Broadleaf Commerce
+
+---
+- name: BROADLEAF COMMERCE
+  hosts: all
+  become: yes
+  tasks:
+    - name: cloning from git 
+      ansible.builtin.git:
+        url: https://github.com/BroadleafCommerce/DemoSite.git
+        dest: /home/devops/Demosite
+    - name: Install maven
+      ansible.builtin.apt:
+        name: maven
+        update_cache: yes
+        state: present
+    - name: clean install maven
+      ansible.builtin.shell:
+        chdir: /home/devops/Demosite
+        cmd: mvn clean install
+    -name: spring boot run
+      ansible.builtin.shell:
+        chdir: /home/devops/Demosite/site
+        cmd: mvn spring-boot:run

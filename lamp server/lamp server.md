@@ -4,7 +4,7 @@
  * Redhat vm as node2. 
  * creating a user 'devops' in two vms with sudo permissions.
   
-   ![divya](./images/images/1node2.png)
+   ![](./images/images/1node2.png)
 
  * Generate a keypair in ansible control node.
   
