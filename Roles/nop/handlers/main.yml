@@ -1,0 +1,17 @@
+---
+# handlers file for nopcommerce
+- name: changing ownership and group
+  ansible.builtin.file:
+    path: /var/www/nopCommerce
+    owner: www-data
+    group: www-data
+    recurse: yes
+    mode: '0777'
+- name: restart nginx
+  ansible.builtin.systemd:
+    name: nginx
+    state: restarted
+- name: restart nopcommerce
+  ansible.builtin.systemd:
+    name: nop
+    state: restarted      

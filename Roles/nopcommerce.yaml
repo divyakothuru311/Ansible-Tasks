@@ -1,0 +1,6 @@
+---
+- name: install nopcommerce
+  become: yes
+  hosts: all
+  roles:
+    - nop

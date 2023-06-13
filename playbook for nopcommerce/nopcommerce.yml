@@ -6,16 +6,16 @@
   tasks:
     - name: Register microsoft key
       ansible.builtin.get_url:
-        url: https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb 
+        url: https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb
         dest: /tmp/packages-microsoft-prod.deb
     - name: package dpkg
       ansible.builtin.dpkg_selections:
         name: packages-microsoft-prod.deb
-        selection: install 
-    - name: Install apt transport
+        selection: install
+    - name: Install apt transports
       ansible.builtin.package:
-        name: 
-         - apt-transport-https 
+        name:
+         - apt-transport-https
          - aspnetcore-runtime-7.0
          - zip
         update_cache: yes
@@ -28,7 +28,7 @@
       ansible.builtin.systemd:
         name: nginx
         state: started
-    - name: copy the configuration file 
+    - name: copy the configuration file
       ansible.builtin.copy:
         src: default
         dest: /etc/nginx/sites-available/
@@ -56,22 +56,23 @@
     - name: changing ownership and group
       ansible.builtin.file:
         path: /var/www/nopCommerce
-        owner: www-data 
+        owner: www-data
         group: www-data
-        recurse: yes 
+        recurse: yes
     - name: nop commerce service file
       ansible.builtin.copy:
         src: /home/devops/playbooks/nopcommerce.service
         dest: /etc/systemd/system/
         remote_src: no
     - name: start nopcommerce
-     ansible.builtin.systemd:
+      ansible.builtin.systemd:
        name: nopcommerce.service
        state: started
     - name: restart nginx
-      ansible.builtin.systmed:
-        name: nginx
-        state: restarted
+      ansible.builtin.systemd:
+       name: nginx
+       state: restarted
+       
        
         
     
