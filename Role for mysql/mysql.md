@@ -18,6 +18,8 @@ writing a playbook to call for mysql role
 
 ![preview](mysql2.png)
 
+![preview](mysql3.png)
+
 ### using a role for mysql with password
 
 ```
@@ -33,4 +35,11 @@ writing a playbook to call for mysql role
 
 ```
 
+The output is as follows
+
+![preview](mysqlpswd1.png)
+
+![preview](mysqlpswd2.png)
+
+![preview](mysqlpswd3.png)
 
