@@ -1,0 +1,11 @@
+[Unit]
+Description= service for broadleaf
+
+[Service]
+User=devops
+WorkingDirectory=/home/devops/DemoSite/site
+ExecStart= mvn spring-boot:run
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
