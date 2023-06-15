@@ -1,0 +1,14 @@
+- name: Extract tomcat
+  ansible.builtin.unarchive:
+    src: /tmp/apache-tomcat-7.0.109.tar.gz
+    dest: "{{ homedir }}"
+    remote_src: yes
+    extra_opts:
+      --strip-components=1
+- name: changing group of directory
+  ansible.builtin.file:
+    path: "{{ homedir }}"
+    state: directory
+    recurse: yes
+    owner: "{{ user }}"
+    group: "{{ group }}"

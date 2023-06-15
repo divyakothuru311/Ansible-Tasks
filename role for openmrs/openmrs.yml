@@ -1,0 +1,7 @@
+---
+- name: install openmrs
+  become: yes
+  hosts: tomcat
+  roles:
+    - openmrs
+  
